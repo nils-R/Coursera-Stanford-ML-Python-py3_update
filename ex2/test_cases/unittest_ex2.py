@@ -9,11 +9,13 @@ import unittest
 import pandas as pd
 import numpy as np
 
+import sys
+sys.path.append('..')
 from costFunction import costFunction
 
 class Ex2Test(unittest.TestCase):
     def setUp(self):
-        data = np.loadtxt('ex2data1.txt', delimiter=',')           
+        data = np.loadtxt('..\ex2data1.txt', delimiter=',')           
         m = data.shape[0]
         # Add intercept term to x and X_test        
         data = np.concatenate((np.ones((m, 1)), data), axis=1)  
