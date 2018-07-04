@@ -10,7 +10,7 @@ def costFunction(theta, X, y):
     # Initialize some useful values
     m = y.size  # number of training examples
     z = X.dot(theta)
-    J = -1/m * ( np.sum( y*np.log(sigmoid(z)) + (np.ones(m)-y) * np.log(np.ones(m) - sigmoid(z)) ) )
+    J = -1/m * np.sum( y*np.log(sigmoid(z)) + ((np.ones(m)-y) * (np.log(np.ones(m) - sigmoid(z))) ) ) 
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the cost of a particular choice of theta.
