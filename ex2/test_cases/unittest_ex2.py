@@ -8,14 +8,24 @@ Created on Mon Jun 18 07:25:29 2018
 import unittest
 import pandas as pd
 import numpy as np
+try:
+    from definitions import ROOT_DIR
+except(ImportError):
+    ROOT_DIR = 'C:\\Users\\N12667\\PythonScripts\\Training\\Coursera-Stanford-ML-Python'
 
-import sys
-sys.path.append('..')
+# =============================================================================
+# if os.path.relpath("..") not in sys.path:
+#     sys.path.append('..')
+# =============================================================================
+import sys, os
+if os.path.abspath(ROOT_DIR+"\\ex2") not in sys.path:
+     sys.path.append(ROOT_DIR+"\\ex2")
+
 from costFunction import costFunction
 
 class Ex2Test(unittest.TestCase):
     def setUp(self):
-        data = np.loadtxt('..\ex2data1.txt', delimiter=',')           
+        data = np.loadtxt(ROOT_DIR+'\\ex2\\ex2data1.txt', delimiter=',')           
         m = data.shape[0]
         # Add intercept term to x and X_test        
         data = np.concatenate((np.ones((m, 1)), data), axis=1)  
@@ -39,5 +49,6 @@ class Ex2Test(unittest.TestCase):
         estimated = costFunction(self.initial_theta, self.X, self.y)
         self.assertAlmostEqual(correct, estimated)
  
-if __name__ == '__main__':        
-    unittest.main()
+if __name__ == '__main__':  
+    import xmlrunner
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))   

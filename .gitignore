@@ -9,3 +9,5 @@ token.txt
 \#*
 token.txt_
 .ipynb_checkpoints
+.spyproject/
+ex2/test_cases/test-reports/
