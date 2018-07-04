@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Ex2Test-20180704233331" tests="3" time="0.018">
+	<testcase classname="Ex2Test" name="test_X_length" time="0.007"/>
+	<testcase classname="Ex2Test" name="test_X_width" time="0.005"/>
+	<testcase classname="Ex2Test" name="test_cost_function" time="0.006"/>
+	<system-out>
+<![CDATA[]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

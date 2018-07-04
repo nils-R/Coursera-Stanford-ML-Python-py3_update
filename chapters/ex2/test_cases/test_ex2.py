@@ -18,14 +18,14 @@ except(ImportError):
 #     sys.path.append('..')
 # =============================================================================
 import sys, os
-if os.path.abspath(ROOT_DIR+"\\ex2") not in sys.path:
-     sys.path.append(ROOT_DIR+"\\ex2")
+if os.path.abspath(ROOT_DIR+"\\chapters\\ex2") not in sys.path:
+     sys.path.append(ROOT_DIR+"\\chapters\\ex2")
 
 from costFunction import costFunction
 
 class Ex2Test(unittest.TestCase):
     def setUp(self):
-        data = np.loadtxt(ROOT_DIR+'\\ex2\\ex2data1.txt', delimiter=',')           
+        data = np.loadtxt(ROOT_DIR+'\\chapters\\ex2\\ex2data1.txt', delimiter=',')           
         m = data.shape[0]
         # Add intercept term to x and X_test        
         data = np.concatenate((np.ones((m, 1)), data), axis=1)  
