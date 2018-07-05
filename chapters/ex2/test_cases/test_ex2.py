@@ -8,10 +8,14 @@ Created on Mon Jun 18 07:25:29 2018
 import unittest
 import pandas as pd
 import numpy as np
+import sys, os
 try:
     from definitions import ROOT_DIR
 except(ImportError):
-    ROOT_DIR = 'C:\\Users\\N12667\\PythonScripts\\Training\\Coursera-Stanford-ML-Python'
+    if 'N12667' in os.getcwd():
+        ROOT_DIR = 'C:\\Users\\N12667\\PythonScripts\\Training\\Coursera-Stanford-ML-Python'
+    elif 'Jenkins' in os.getcwd():
+        ROOT_DIR = 'C:\\Program Files (x86)\\Jenkins\\workspace\\stanford_machine_learning'
 
 # =============================================================================
 # if os.path.relpath("..") not in sys.path:
