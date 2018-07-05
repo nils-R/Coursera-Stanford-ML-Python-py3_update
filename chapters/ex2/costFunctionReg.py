@@ -11,6 +11,7 @@ def costFunctionReg(theta, X, y, Lambda):
     gradient of the cost w.r.t. to the parameters.
     """
     # Initialize some useful values
+    
     m = len(y)   # number of training examples
     n = len(theta)
     
@@ -19,7 +20,7 @@ def costFunctionReg(theta, X, y, Lambda):
     
     error = sigmoid(X.dot(theta)) - y
     grad = np.zeros(n) 
-    grad = 1/m*(X.T.dot(error)+np.sum(np.array(theta)[1:n]))
+    grad = 1/m* (X.T.dot(error) + Lambda * np.sum(np.array(theta)[1:]))
         
     return J, grad
 #     # ====================== YOUR CODE HERE ======================
