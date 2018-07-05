@@ -9,7 +9,8 @@ from gradientDescent import gradientDescent
 from computeCost import computeCost
 from warmUpExercise import warmUpExercise
 from plotData import plotData
-from show import show
+#from show import show
+from matplotlib.pyplot import show
 
 ## Machine Learning Online Class - Exercise 1: Linear Regression
 
@@ -54,6 +55,7 @@ y = data[:, 1]
 print('Plotting Data ...')
 plotData(x=data[:, 0], y=data[:, 1])
 show()
+
 
 input('Program paused. Press Enter to continue...')
 

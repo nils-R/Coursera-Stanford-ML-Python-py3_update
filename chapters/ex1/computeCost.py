@@ -7,7 +7,8 @@ def computeCost(X, y, theta):
        regression to fit the data points in X and y
     """
     m = y.size
-    J = 0
+    inner = np.power(((X.dot(theta.T)) - y), 2)
+    J = np.sum(inner) / (2 * m)
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: Compute the cost of a particular choice of theta

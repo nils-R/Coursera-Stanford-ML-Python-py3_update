@@ -7,6 +7,7 @@ def normalEqn(X, y):
        regression using the normal equations.
     """
     theta = 0
+    theta = np.linalg.inv(X.T.dot(X)).dot(X.T.dot(y))
 # ====================== YOUR CODE HERE ======================
 # Instructions: Complete the code to compute the closed form solution
 #               to linear regression and put the result in theta.
@@ -15,7 +16,7 @@ def normalEqn(X, y):
 # ---------------------- Sample Solution ----------------------
 
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------d--
 
     return theta
 

@@ -1,5 +1,5 @@
 from computeCostMulti import computeCostMulti
-
+import numpy as np
 
 def gradientDescentMulti(X, y, theta, alpha, num_iters):
     """
@@ -11,8 +11,18 @@ def gradientDescentMulti(X, y, theta, alpha, num_iters):
     # Initialize some useful values
     J_history = []
     m = y.size  # number of training examples
-
+    theta_temp = np.zeros(len(theta))
+    
     for i in range(num_iters):
+        
+        e = (X.dot(theta.T) - y)
+        
+        for j, theta_j in enumerate(theta):
+            j_deriv = e*X[:,j]
+            theta_temp[j] = theta[j] - alpha / m * np.sum(j_deriv)
+        
+        theta = theta_temp
+        
         #   ====================== YOUR CODE HERE ======================
         # Instructions: Perform a single gradient step on the parameter vector
         #               theta.

@@ -8,6 +8,6 @@ def warmUpExercise():
 # ============= YOUR CODE HERE ==============
 # Instructions: Return the 5x5 identity matrix
 
-    raise NotImplementedError
+    return np.eye(5)
 
 # ===========================================
