@@ -1,6 +1,7 @@
 import numpy as np
 import sys
 sys.path.append('../ex2/')
+#sys.path.append(os.path.join(os.path.dirname(os.getcwd()),'ex2'))
 
 from Submission import Submission
 from Submission import sprintf
@@ -8,7 +9,7 @@ from lrCostFunction import lrCostFunction
 from oneVsAll import oneVsAll
 from predictOneVsAll import predictOneVsAll
 from predict import predict
-from ex2.gradientFunctionReg import gradientFunctionReg
+from gradientFunctionReg import gradientFunctionReg
 
 homework = 'multi-class-classification-and-neural-networks'
 

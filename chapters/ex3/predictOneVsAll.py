@@ -1,6 +1,6 @@
 import numpy as np
 
-from ex2.sigmoid import sigmoid
+from sigmoid import sigmoid
 
 
 def predictOneVsAll(all_theta, X):

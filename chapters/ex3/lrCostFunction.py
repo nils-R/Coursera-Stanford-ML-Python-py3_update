@@ -1,4 +1,4 @@
-from ex2.costFunctionReg import costFunctionReg
+from costFunctionReg import costFunctionReg
 
 
 def lrCostFunction(theta, X, y, Lambda):
@@ -6,7 +6,8 @@ def lrCostFunction(theta, X, y, Lambda):
         theta as the parameter for regularized logistic regression and the
         gradient of the cost w.r.t. to the parameters.
     """
-
+    J = 0 # <-- placeholder
+    
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the cost of a particular choice of theta.
     #               You should set J to the cost.

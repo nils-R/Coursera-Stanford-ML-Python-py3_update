@@ -1,6 +1,6 @@
 import numpy as np
 
-from ex2.sigmoid import sigmoid
+from sigmoid import sigmoid
 
 
 def predict(Theta1, Theta2, X):
@@ -11,7 +11,8 @@ def predict(Theta1, Theta2, X):
     # Useful values
     m, _ = X.shape
     num_labels, _ = Theta2.shape
-
+    
+    p = 1 # <-- placeholder
     # ====================== YOUR CODE HERE ======================
     # Instructions: Complete the following code to make predictions using
     #               your learned neural network. You should set p to a

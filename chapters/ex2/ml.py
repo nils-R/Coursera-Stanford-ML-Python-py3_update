@@ -76,3 +76,16 @@ def mapFeature2(X1, X2, degree=6):
     """
     quads = Series([X1 ** (i - j) * X2 ** j for i in range(1, degree + 1) for j in range(i + 1)])
     return Series([1]).append([Series(X1), Series(X2), quads])
+
+def mapFeature3(X1, X2):
+    degree = 6
+    size = 28
+    out = np.ones((X1.size, size))
+    iter = 1
+    for i in range(1, degree+1):
+        print("New polynomial: ", iter)
+        for j in range(0, i+1):
+            print("Iter no: ", iter)
+            out[:, iter] = np.power(X1,i-j) * np.power(X2,i-j)
+            iter = iter+1
+    return out

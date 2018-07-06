@@ -16,18 +16,15 @@ def gradientFunction(theta, X, y, vectorized=True):
     else:
         n = 1
 
-    theta = np.matrix(theta).T
-    X = np.matrix(X)
-    y = np.matrix(y).T
-        
-    error = sigmoid(X * theta) - y
+    z = X.dot(theta)        
+    error = sigmoid(z) - y
     grad = np.zeros(n)
     
     if vectorized == True:
-        grad = 1/m*X.T.dot(error)
+        grad = 1/m*error.dot(X)
     else:
-        for i in range(n):
-            grad[i] = 1/m*np.sum((X[:,i]).T.dot(error))
+        for j in range(n):
+            grad[j] = 1/m*np.sum(error.dot(X[:,j]))
     
             
     # ====================== YOUR CODE HERE ======================
