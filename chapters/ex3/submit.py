@@ -9,7 +9,7 @@ from lrCostFunction import lrCostFunction
 from oneVsAll import oneVsAll
 from predictOneVsAll import predictOneVsAll
 from predict import predict
-from gradientFunctionReg import gradientFunctionReg
+from lrGradient import lrGradient
 
 homework = 'multi-class-classification-and-neural-networks'
 
@@ -52,14 +52,14 @@ def output(part_id):
 
     if part_id == 1:
         J = lrCostFunction(np.array([0.25, 0.5, -0.5]), X, y, 0.1)
-        grad = gradientFunctionReg(np.array([0.25, 0.5, -0.5]), X, y, 0.1)
+        grad = lrGradient(np.array([0.25, 0.5, -0.5]), X, y, 0.1)
         return sprintf('%0.5f ', np.hstack((J, grad)).tolist())
     elif part_id == 2:
         return sprintf('%0.5f ', oneVsAll(Xm, ym, 4, 0.1))
     elif part_id == 3:
-        return sprintf('%0.5f ', predictOneVsAll(t1, Xm))
+        return sprintf('%0.5f ', predictOneVsAll(t1, Xm)[0])
     elif part_id == 4:
-        return sprintf('%0.5f ', predict(t1, t2, Xm))
+        return sprintf('%0.5f ', predict(t1, t2, Xm)[0])
 
 s = Submission(homework, part_names, srcs, output)
 try:

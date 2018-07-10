@@ -2,8 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 
 from lrCostFunction import lrCostFunction
-from gradientFunctionReg import gradientFunctionReg
-
+from lrGradient import lrGradient
 
 def oneVsAll(X, y, num_labels, Lambda):
     """ trains multiple logistic regression classifiers and returns all
@@ -18,7 +17,7 @@ def oneVsAll(X, y, num_labels, Lambda):
     all_theta = np.zeros((num_labels, n + 1))
 
     # Add ones to the X data matrix
-    X = np.column_stack((np.ones((m, 1)), X))
+    X0 = np.column_stack((np.ones((m, 1)), X))
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: You should complete the following code to train num_labels
@@ -36,7 +35,15 @@ def oneVsAll(X, y, num_labels, Lambda):
 
     # Set Initial theta
     initial_theta = np.zeros((n + 1, 1))
-
+    
+    for i in range(1, num_labels+1):
+        theta = np.zeros(n + 1)
+        y_i = np.array([1 if label == i else 0 for label in y])
+        y_i = np.reshape(y_i, m )
+        
+        fmin = minimize(fun=lrCostFunction, x0=theta, args=(X0, y_i, Lambda), method='TNC', jac=lrGradient)
+        all_theta[i-1,:] = fmin.x
+    
     # This function will return theta and the cost
     # =========================================================================
 

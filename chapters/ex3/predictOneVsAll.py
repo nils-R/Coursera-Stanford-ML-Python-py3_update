@@ -1,5 +1,4 @@
 import numpy as np
-
 from sigmoid import sigmoid
 
 
@@ -13,13 +12,16 @@ def predictOneVsAll(all_theta, X):
     """
 
     m = X.shape[0]
-
-    # You need to return the following variables correctly
-    p = np.zeros((m, 1))
+    num_labels = all_theta.shape[0]
 
     # Add ones to the X data matrix
     X = np.column_stack((np.ones((m, 1)), X))
-
+    
+    predictions = sigmoid(X.dot(all_theta.T))
+    p = np.argmax(predictions, axis=1)
+    
+    p_reshaped = predictions.reshape(num_labels,m).sort(axis=1)
+       
     # ====================== YOUR CODE HERE ======================
     # Instructions: Complete the following code to make predictions using
     #               your learned logistic regression parameters (one-vs-all).
@@ -34,4 +36,4 @@ def predictOneVsAll(all_theta, X):
     #
     # =========================================================================
 
-    return p + 1    # add 1 to offset index of maximum in A row
+    return p + 1, predictions, p_reshaped   # add 1 to offset index of maximum in A row

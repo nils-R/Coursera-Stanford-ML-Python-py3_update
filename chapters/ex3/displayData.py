@@ -13,12 +13,12 @@ def displayData(X):
 
     # Compute rows, cols
     m, n = X.shape
-    example_width = round(np.sqrt(n))
-    example_height = (n / example_width)
+    example_width = round(np.sqrt(n)).astype(int)
+    example_height = (n / example_width).astype(int)
 
     # Compute number of items to display
-    display_rows = np.floor(np.sqrt(m))
-    display_cols = np.ceil(m / display_rows)
+    display_rows = np.floor(np.sqrt(m)).astype(int)
+    display_cols = np.ceil(m / display_rows).astype(int)
 
     # Between images padding
     pad = 1

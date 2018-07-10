@@ -18,8 +18,9 @@ def costFunctionReg(theta, X, y, Lambda):
     J = -1/m * np.sum( y*np.log(sigmoid(z)) + ((np.ones(m)-y) * (np.log(np.ones(m) - sigmoid(z))) ) ) + (Lambda/(2*m)*np.sum(np.array(theta)[1:n]**2))
     
     error = sigmoid(X.dot(theta)) - y
-        
-    return J #, grad  <---- Python implementation is different from Matlab. See gradientFunctionReg instead
+    grad = 1/m* (error.dot(X) + Lambda * np.concatenate((np.zeros(1),theta[1:])) )
+    
+    return J, grad  # <---- Python implementation is different from Matlab. See gradientFunctionReg instead
 
 #     # ====================== YOUR CODE HERE ======================
 #     # Instructions: Compute the cost of a particular choice of theta.

@@ -11,8 +11,19 @@ def predict(Theta1, Theta2, X):
     # Useful values
     m, _ = X.shape
     num_labels, _ = Theta2.shape
+    a1 = np.column_stack((np.ones(m), X))
     
-    p = 1 # <-- placeholder
+    # Make computations for hidden layer
+    z2 = a1.dot(Theta1.T)
+    a2 = sigmoid(z2)
+    a2 = np.column_stack((np.ones(m), a2)) # add bias term
+    
+    # Make computations for output layer
+    z3 = a2.dot(Theta2.T)
+    a3 = sigmoid(z3)
+    
+    p = np.argmax(a3, axis=1) 
+    
     # ====================== YOUR CODE HERE ======================
     # Instructions: Complete the following code to make predictions using
     #               your learned neural network. You should set p to a
@@ -25,4 +36,4 @@ def predict(Theta1, Theta2, X):
     #
     # =========================================================================
 
-    return p + 1  # add 1 to offset index of maximum in A row
+    return p + 1, a3  # add 1 to offset index of maximum in A row
