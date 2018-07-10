@@ -27,6 +27,8 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
     # Useful values
     m, n = X.shape
     num_labels, _ = Theta2.shape
+    
+    # Make computations for input layer
     a1 = np.column_stack((np.ones(m), X))
     
     # Make computations for hidden layer
@@ -36,11 +38,11 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
     
     # Make computations for output layer
     z3 = a2.dot(Theta2.T)
-    a3 = sigmoid(z3)
+    h = sigmoid(z3)
     
     # Compute cost
-    cost31 = np.log(a3)
-    cost30 = np.log(1 - a3)
+    cost31 = np.log(h)
+    cost30 = np.log(1 - h)
     regularization1 = Lambda/(2*m)*np.sum(np.array(Theta1)[:,1:]**2)
     regularization2 = Lambda/(2*m)*np.sum(np.array(Theta2)[:,1:]**2)
     regularization = regularization1 + regularization2
@@ -50,24 +52,47 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
         Y[:,i-1] = np.array([1 if label == i else 0 for label in y])
     
     J = -1/m * np.sum( np.multiply(Y, cost31) + np.multiply(1.0-Y, cost30) ) + regularization
-    
-    #------------------------------
-    
-    # Predict output
-    p = np.argmax(a3, axis=1) + 1
-    #error = (p != y).astype(int)
+             
+## =============================================================================
+#    # Version with loops
+#    D1 = np.zeros((input_layer_size+1, hidden_layer_size)).T
+#    D2 = np.zeros((hidden_layer_size+1, num_labels)).T
+#    
+#    # Compute error
+#    for t in range(0, m):
+#        a1t = a1[t,:]
+#        z2t = z2[t,:]
+#        a2t = a2[t,:]
+#        z3t = z3[t,:]
+#        ht = h[t,:]
+#        yt = Y[t,:]
+#        d3t = ht - yt
+#        
+#        z2t = np.insert(z2t, 0, values=np.ones(1))
+#        d2t = np.multiply(Theta2.T.dot(d3t[:,None]).T, sigmoidGradient(sigmoid(a2t)))
+#        
+#        D2 = D2 + np.outer(d3t.T,a2t)
+#        D1 = D1 + np.dot(d2t[:,1:].T, a1t[:, None].T)
+#        
+#    D1 = D1 / m
+#    D2 = D2 / m
     
 # =============================================================================
-#     # Compute error
-#     for i in range(1, num_labels+1):
-#         #theta = np.zeros(n + 1)
-#         y_i = np.array([1 if label == i else 0 for label in y])
-#         
-#         y_i = np.reshape(y_i, m )
-#         fmin = minimize(fun=lrCostFunction, x0=theta, args=(X0, y_i, Lambda), method='TNC', jac=lrGradient)
-#         all_theta[i-1,:] = fmin.x
-# =============================================================================
-
+    # Vectorized version
+    
+    d3 = h - Y 
+    D2 = np.dot(d3.T,a2)
+    
+    d2 = np.multiply(d3.dot(Theta2[:,1:]), sigmoidGradient(z2))
+    D1 = np.dot(d2.T,a1)
+    
+    D2 = 1/m*D2
+    D1 = 1/m*D1
+    
+    #Regularization
+    D1 = D1 + Lambda/m*np.concatenate((np.zeros((Theta1.shape[0],1)) ,Theta1[:,1:]), axis=1)
+    D2 = D2 + Lambda/m*np.concatenate((np.zeros((Theta2.shape[0],1)) ,Theta2[:,1:]), axis=1)
+    
     # ====================== YOUR CODE HERE ======================
     # Instructions: You should complete the code by working through the
     #               following parts.
@@ -102,7 +127,6 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
     # =========================================================================
 
     # Unroll gradient
-    #grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
-    grad = 0 # <- placeholder
+    grad = np.hstack((D1.T.ravel(), D2.T.ravel()))
 
     return J, grad

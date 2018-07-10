@@ -220,7 +220,7 @@ input('Program paused. Press Enter to continue...')
 #  neural network to predict the labels of the training set. This lets
 #  you compute the training set accuracy.
 
-pred = predict(Theta1, Theta2, X)
+pred = predict(Theta1, Theta2, X)[0]
 
 accuracy = np.mean(np.double(pred == y)) * 100
 print('Training Set Accuracy: %f\n' % accuracy)
