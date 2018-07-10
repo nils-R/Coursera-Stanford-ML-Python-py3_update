@@ -9,7 +9,7 @@ def randInitializeWeights(L_in, L_out):
         Note that W should be set to a matrix of size(L_out, 1 + L_in)
         as the column row of W handles the "bias" terms
     """
-
+    epsilon_init = 0.12
     # ====================== YOUR CODE HERE ======================
     # Instructions: Initialize W randomly so that we break the symmetry while
     #               training the neural network.
@@ -17,5 +17,5 @@ def randInitializeWeights(L_in, L_out):
     # Note: The first row of W corresponds to the parameters for the bias units
     #
     # =========================================================================
-
+    W = np.random.random((L_out, 1+L_in)) * epsilon_init * 2 - epsilon_init
     return W

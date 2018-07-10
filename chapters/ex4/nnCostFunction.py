@@ -1,6 +1,6 @@
 import numpy as np
 
-from ex2.sigmoid import sigmoid
+from chapters.ex2.sigmoid import sigmoid
 from sigmoidGradient import sigmoidGradient
 
 
@@ -24,8 +24,49 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
     Theta2 = np.reshape(nn_params[hidden_layer_size * (input_layer_size + 1):],
                         (num_labels, (hidden_layer_size + 1)), order='F').copy()
 
-    # Setup some useful variables
-    m, _ = X.shape
+    # Useful values
+    m, n = X.shape
+    num_labels, _ = Theta2.shape
+    a1 = np.column_stack((np.ones(m), X))
+    
+    # Make computations for hidden layer
+    z2 = a1.dot(Theta1.T)
+    a2 = sigmoid(z2)
+    a2 = np.column_stack((np.ones(m), a2)) # add bias term
+    
+    # Make computations for output layer
+    z3 = a2.dot(Theta2.T)
+    a3 = sigmoid(z3)
+    
+    # Compute cost
+    cost31 = np.log(a3)
+    cost30 = np.log(1 - a3)
+    regularization1 = Lambda/(2*m)*np.sum(np.array(Theta1)[:,1:]**2)
+    regularization2 = Lambda/(2*m)*np.sum(np.array(Theta2)[:,1:]**2)
+    regularization = regularization1 + regularization2
+    
+    Y = np.zeros((m, num_labels))
+    for i in range(1, num_labels+1):
+        Y[:,i-1] = np.array([1 if label == i else 0 for label in y])
+    
+    J = -1/m * np.sum( np.multiply(Y, cost31) + np.multiply(1.0-Y, cost30) ) + regularization
+    
+    #------------------------------
+    
+    # Predict output
+    p = np.argmax(a3, axis=1) + 1
+    #error = (p != y).astype(int)
+    
+# =============================================================================
+#     # Compute error
+#     for i in range(1, num_labels+1):
+#         #theta = np.zeros(n + 1)
+#         y_i = np.array([1 if label == i else 0 for label in y])
+#         
+#         y_i = np.reshape(y_i, m )
+#         fmin = minimize(fun=lrCostFunction, x0=theta, args=(X0, y_i, Lambda), method='TNC', jac=lrGradient)
+#         all_theta[i-1,:] = fmin.x
+# =============================================================================
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: You should complete the code by working through the
@@ -61,6 +102,7 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
     # =========================================================================
 
     # Unroll gradient
-    grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
+    #grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
+    grad = 0 # <- placeholder
 
     return J, grad

@@ -12,18 +12,11 @@ def lrGradient(theta, X, y, Lambda=0.1):
    
     m = len(y)   # number of training examples
     n = len(theta)
-
-    #zeros = np.zeros((1,1))
     zeros = np.zeros(1)
     
     z = X.dot(theta)
-
     error = sigmoid(z) - y
-    
-    #print(X.T.shape, error.shape)
-    #print(X.T.dot(error).shape)
-    #print(np.concatenate((zeros,theta[1:])).shape)
-    
+       
     grad = 1/m* (X.T.dot(error) + Lambda * np.concatenate((zeros,theta[1:])) )
     
     # ====================== YOUR CODE HERE ======================

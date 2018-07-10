@@ -2,8 +2,8 @@ import numpy as np
 import scipy.io
 from scipy.optimize import minimize
 
-from ex3.displayData import displayData
-from ex3.predict import predict
+from chapters.ex3.displayData import displayData
+from chapters.ex3.predict import predict
 from nnCostFunction import nnCostFunction
 from sigmoidGradient import sigmoidGradient
 from randInitializeWeights import randInitializeWeights
