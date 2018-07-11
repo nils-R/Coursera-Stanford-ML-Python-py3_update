@@ -17,12 +17,24 @@ def learningCurve(X, y, Xval, yval, Lambda):
     """
 
     # Number of training examples
-    m, _ = X.shape
+    m = X.shape[0]
 
     # You need to return these values correctly
     error_train = np.zeros(m)
     error_val = np.zeros(m)
-
+    
+    for i in range(1,m+1):
+        theta = trainLinearReg(X[0:i,:], y[0:i], Lambda=0)
+        error_train[i-1] = linearRegCostFunction(X[0:i,:], y[0:i], theta, Lambda=0)[0]
+        error_val[i-1] = linearRegCostFunction(Xval, yval, theta, Lambda=0)[0]
+    
+    
+    #error_train = np.concatenate((np.zeros(1),error_train))
+    #error_val = np.concatenate((np.zeros(1),error_val))
+    
+    #error_train = np.delete(error_train,0)
+    #error_val = np.delete(error_val,0)
+    
     # ====================== YOUR CODE HERE ======================
     # Instructions: Fill in this function to return training errors in
     #               error_train and the cross validation errors in error_val.
