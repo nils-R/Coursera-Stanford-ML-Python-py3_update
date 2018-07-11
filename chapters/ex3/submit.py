@@ -1,7 +1,6 @@
 import numpy as np
 import sys
-#sys.path.append('../ex2/')
-#sys.path.append('..')
+sys.path.append('../ex2/')
 
 from Submission import Submission
 from Submission import sprintf
