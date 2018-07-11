@@ -22,12 +22,14 @@ def learningCurve(X, y, Xval, yval, Lambda):
     # You need to return these values correctly
     error_train = np.zeros(m)
     error_val = np.zeros(m)
+    thetas = np.zeros((m, X.shape[1]))
     
     for i in range(1,m+1):
-        theta = trainLinearReg(X[0:i,:], y[0:i], Lambda=0)
+        theta = trainLinearReg(X[0:i,:], y[0:i], Lambda=Lambda)
         error_train[i-1] = linearRegCostFunction(X[0:i,:], y[0:i], theta, Lambda=0)[0]
         error_val[i-1] = linearRegCostFunction(Xval, yval, theta, Lambda=0)[0]
-    
+        
+        #thetas[i-1] = theta
     
     #error_train = np.concatenate((np.zeros(1),error_train))
     #error_val = np.concatenate((np.zeros(1),error_val))
@@ -73,4 +75,4 @@ def learningCurve(X, y, Xval, yval, Lambda):
 
     # =========================================================================
 
-    return error_train, error_val
+    return error_train, error_val #, thetas

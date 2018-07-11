@@ -20,16 +20,16 @@ def linearRegCostFunction(X, y, theta, Lambda):
     if theta.size == 1:
         np.concatenate((np.ones(1),theta))
     
-    h = X.dot(theta)
-    cost = np.sum((h-y)**2)
+    hx = X.dot(theta)
+    cost = np.sum((hx-y)**2)
     regularization = Lambda*np.sum(theta[1:]**2)
     
     if y.size == 0:
         J = 0
         grad = 0
     else:
-        J = 1/(2*m)* (cost + regularization)   
-        grad = 1/m* ( X.T.dot(h-y) + Lambda * np.concatenate((np.zeros(1),theta[1:])) )
+        J = 1/(2*m) * (cost + regularization)   
+        grad = 1/m * ( X.T.dot(hx-y) + Lambda * np.concatenate((np.zeros(1),theta[1:])) )
 
     # ====================== YOUR CODE HERE ===================================
     # Instructions: Compute the cost and gradient of regularized linear

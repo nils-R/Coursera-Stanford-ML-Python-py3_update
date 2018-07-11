@@ -127,7 +127,7 @@ show()
 
 print('Training Examples\tTrain Error\tCross Validation Error')
 for i in range(1,m+1):
-    print('  \t%d\t\t%f\t%f' % (i, error_train[i], error_val[i]))
+    print('  \t%d\t\t%f\t%f' % (i, error_train[i-1], error_val[i-1]))
 
 input('Program paused. Press Enter to continue...')
 
@@ -196,7 +196,7 @@ show()
 print('Polynomial Regression (Lambda = %f)\n\n' % Lambda)
 print('# Training Examples\tTrain Error\tCross Validation Error')
 for i in range(1,m+1):
-    print('  \t%d\t\t%f\t%f' % (i, error_train[i], error_val[i]))
+    print('  \t%d\t\t%f\t%f' % (i, error_train[i-1], error_val[i-1]))
 
 input('Program paused. Press Enter to continue...')
 
@@ -217,6 +217,6 @@ show()
 
 print('Lambda\t\tTrain Error\tValidation Error')
 for i in range(Lambda_vec.size):
-    print(' %f\t%f\t%f' % (Lambda_vec[i], error_train[i], error_val[i]))
+    print(' %f\t%f\t%f' % (Lambda_vec[i-1], error_train[i-1], error_val[i-1]))
 
 input('Program paused. Press Enter to continue...')
