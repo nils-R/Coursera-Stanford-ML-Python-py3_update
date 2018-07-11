@@ -6,13 +6,12 @@ Created on Mon Jul 9 2018
 """
 
 import unittest
-import pandas as pd
 import numpy as np
 from scipy.io import loadmat
-import random
-import sys, os
+from chapters.ex5.learningCurve import learningCurve
 
-class Ex3Test(unittest.TestCase):
+
+class Ex5Test(unittest.TestCase):
     def setUp(self):
         pass
              
@@ -29,10 +28,8 @@ class Ex3Test(unittest.TestCase):
         
         error_train, error_val = learningCurve(self.X, self.y, self.Xval, self.yval, 1)
         
-        print(error_train, correct_train, thetas)
-        self.assertEqual(error_train, correct_train)
-        self.assertEqual(error_val, correct_val)
-  
+        assert np.allclose(error_train, correct_train)
+        assert np.allclose(error_val, correct_val)
                
  
 if __name__ == '__main__':  
