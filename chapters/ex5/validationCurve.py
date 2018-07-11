@@ -17,7 +17,12 @@ def validationCurve(X, y, Xval, yval):
     # You need to return these variables correctly.
     error_train = np.zeros(lambda_vec.size)
     error_val = np.zeros(lambda_vec.size)
-
+    
+    for i in range(0, lambda_vec.size):
+        Lambda = lambda_vec[i]
+        theta = trainLinearReg(X, y, Lambda, method='CG', maxiter=200)
+        error_train[i] = linearRegCostFunction(X, y, theta, Lambda=0)[0]
+        error_val[i] = linearRegCostFunction(Xval, yval, theta, Lambda=0)[0]
     # ====================== YOUR CODE HERE ======================
     # Instructions: Fill in this function to return training errors in
     #               error_train and the validation errors in error_val. The

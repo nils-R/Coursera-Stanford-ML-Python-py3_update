@@ -113,8 +113,8 @@ error_train, error_val = learningCurve(np.column_stack((np.ones(m), X)), y,
                                        yval,
                                        Lambda=Lambda)
 plt.figure()
-plt.plot(range(m), error_train, color='b', lw=0.5, label='Train')
-plt.plot(range(m), error_val, color='g', lw=0.5, label='Cross Validation')
+plt.plot(range(1,1+m), error_train, color='b', lw=0.5, label='Train')
+plt.plot(range(1,1+m), error_val, color='g', lw=0.5, label='Cross Validation')
 plt.title('Learning Curve for Linear Regression')
 plt.legend()
 plt.xlabel('Number of training examples')
@@ -126,8 +126,8 @@ plt.legend(loc='upper right', shadow=True, fontsize='x-large', numpoints=1)
 show()
 
 print('Training Examples\tTrain Error\tCross Validation Error')
-for i in range(m):
-    print('  \t%d\t\t%f\t%f' % (i, error_train[i], error_val[i]))
+for i in range(1,m+1):
+    print('  \t%d\t\t%f\t%f' % (i, error_train[i-1], error_val[i-1]))
 
 input('Program paused. Press Enter to continue...')
 
@@ -183,8 +183,8 @@ input('Program paused. Press Enter to continue...')
 
 error_train, error_val = learningCurve(X_poly, y, X_poly_val, yval, Lambda)
 plt.figure()
-plt.plot(range(m), error_train, color='b', lw=0.5, label='Train')
-plt.plot(range(m), error_val, color='g', lw=0.5, label='Cross Validation')
+plt.plot(range(1,m+1), error_train, color='b', lw=0.5, label='Train')
+plt.plot(range(1,m+1), error_val, color='g', lw=0.5, label='Cross Validation')
 plt.title('Polynomial Regression Learning Curve (Lambda = %f)' % Lambda)
 plt.xlabel('Number of training examples')
 plt.ylabel('Error')
@@ -195,8 +195,8 @@ show()
 
 print('Polynomial Regression (Lambda = %f)\n\n' % Lambda)
 print('# Training Examples\tTrain Error\tCross Validation Error')
-for i in range(m):
-    print('  \t%d\t\t%f\t%f' % (i, error_train[i], error_val[i]))
+for i in range(1,m+1):
+    print('  \t%d\t\t%f\t%f' % (i, error_train[i-1], error_val[i-1]))
 
 input('Program paused. Press Enter to continue...')
 
@@ -217,6 +217,6 @@ show()
 
 print('Lambda\t\tTrain Error\tValidation Error')
 for i in range(Lambda_vec.size):
-    print(' %f\t%f\t%f' % (Lambda_vec[i], error_train[i], error_val[i]))
+    print(' %f\t%f\t%f' % (Lambda_vec[i-1], error_train[i-1], error_val[i-1]))
 
 input('Program paused. Press Enter to continue...')

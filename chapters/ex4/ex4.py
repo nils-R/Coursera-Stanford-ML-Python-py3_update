@@ -2,8 +2,8 @@ import numpy as np
 import scipy.io
 from scipy.optimize import minimize
 
-from ex3.displayData import displayData
-from ex3.predict import predict
+from chapters.ex3.displayData import displayData
+from chapters.ex3.predict import predict
 from nnCostFunction import nnCostFunction
 from sigmoidGradient import sigmoidGradient
 from randInitializeWeights import randInitializeWeights
@@ -220,7 +220,7 @@ input('Program paused. Press Enter to continue...')
 #  neural network to predict the labels of the training set. This lets
 #  you compute the training set accuracy.
 
-pred = predict(Theta1, Theta2, X)
+pred = predict(Theta1, Theta2, X)[0]
 
 accuracy = np.mean(np.double(pred == y)) * 100
 print('Training Set Accuracy: %f\n' % accuracy)

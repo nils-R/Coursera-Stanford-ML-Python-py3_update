@@ -41,7 +41,7 @@ print('Loading and Visualizing Data ...')
 
 data = scipy.io.loadmat('ex3data1.mat')  # training data stored in arrays X, y
 X = data['X']
-y = data['y']
+y = np.ravel(data['y'])
 m, _ = X.shape
 
 # Randomly select 100 data points to display
@@ -69,7 +69,7 @@ input('Program paused. Press Enter to continue...')
 #  ================ Part 3: Predict for One-Vs-All ================
 #  After ...
 
-pred = predictOneVsAll(all_theta, X)
+pred = predictOneVsAll(all_theta, X)[0]
 accuracy = np.mean(np.double(pred == np.squeeze(y))) * 100
 print('\nTraining Set Accuracy: %f\n' % accuracy)
 
