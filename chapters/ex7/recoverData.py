@@ -21,4 +21,4 @@ def recoverData(Z, U, K):
     #
     # =============================================================
 
-    return X_rec
+    return np.zeros(1)#X_rec

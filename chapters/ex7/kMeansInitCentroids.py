@@ -7,8 +7,8 @@ def kMeansInitCentroids(X, K):
     """
 
     # You should return this values correctly
-    centroids = np.zeros((K, X.shape[1]))
-
+    centroids = X[np.random.choice(X.shape[0], K, replace=False), :]
+    
     # ====================== YOUR CODE HERE ======================
     # Instructions: You should set centroids to randomly chosen examples from
     #               the dataset X

@@ -16,7 +16,12 @@ def computeCentroids(X, idx, K):
     m, n = X.shape
 
     # You need to return the following variables correctly.
-    centroids = []
+    centroids = np.zeros((K, n))
+    
+    for i in range(K):
+        centroids[i] = X[np.where(idx==i),:].mean(axis=1)
+    
+    
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: Go over every centroid and compute mean of all points that

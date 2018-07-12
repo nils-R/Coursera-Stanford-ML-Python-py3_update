@@ -9,10 +9,20 @@ def findClosestCentroids(X, centroids):
 
     # Set K
     K = len(centroids)
-
+    
+    # Determine number of training examples
+    m = X.shape[0]
+    
     # You need to return the following variables correctly.
-    idx = np.zeros(X.shape[0], dtype=int)
-
+    idx = np.zeros(m, dtype=int)
+    idk = np.zeros(K, dtype=float)
+    
+    for i in range(m):
+        for k in range(K):
+            idk[k] = np.linalg.norm(X[i,:]-centroids[k,:])
+        idx[i] = idk.argmin().astype(int)
+        
+        
     # ====================== YOUR CODE HERE ======================
     # Instructions: Go over every example, find its closest centroid, and store
     #               the index inside idx at the appropriate location.
@@ -26,3 +36,7 @@ def findClosestCentroids(X, centroids):
 
     return idx
 
+def test_centroids():
+    X_t = np.sin([range(1,51)]).reshape(5,10).T
+    cent = X_t[6:10,:]
+    return findClosestCentroids(X_t, cent) + 1 # plus one to compare with octave solution
