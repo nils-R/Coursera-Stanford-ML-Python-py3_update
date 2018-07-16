@@ -26,7 +26,7 @@ from matplotlib import use, cm
 use('TkAgg')
 import numpy as np
 import scipy.io
-import scipy.misc
+#import scipy.misc
 import matplotlib.pyplot as plt
 
 from findClosestCentroids import findClosestCentroids
@@ -34,7 +34,7 @@ from computeCentroids import computeCentroids
 from runkMeans import runkMeans
 from kMeansInitCentroids import kMeansInitCentroids
 from show import show
-
+from imageio import imread
 
 print('Finding closest centroids.')
 
@@ -116,7 +116,8 @@ input('Program paused. Press Enter to continue...')
 print('Running K-Means clustering on pixels from an image.')
 
 # Load an image of a bird
-A = scipy.misc.imread('bird_small.png')
+A = imread('bird_small.png')
+#A = imread('self_portrait.jpg', format='jpg')
 
 # If imread does not work for you, you can try instead
 #   load ('bird_small.mat')

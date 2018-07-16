@@ -6,7 +6,7 @@ def projectData(X, U, K):
     the normalized inputs X into the reduced dimensional space spanned by
     the first K columns of U. It returns the projected examples in Z.
     """
-
+    Z = U[:,K].T.dot(X)
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the projection of the data using only the top K
     #               eigenvectors in U (first K columns).
@@ -17,4 +17,4 @@ def projectData(X, U, K):
     #
     # =============================================================
 
-    return np.zeros(1)#Z
+    return Z

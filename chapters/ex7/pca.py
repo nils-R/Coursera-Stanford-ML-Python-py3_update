@@ -11,7 +11,8 @@ def pca(X):
 
     # You need to return the following variables correctly.
     # S must be a diagonal matrix.
-
+    U, S, V = np.linalg.svd(X)
+    
     # ====================== YOUR CODE HERE ======================
     # Instructions: You should first compute the covariance matrix. Then, you
     #               should use the "svd" function to compute the eigenvectors
@@ -22,4 +23,4 @@ def pca(X):
     #
     # =========================================================================
 
-    return np.zeros(1), np.zeros(1), np.eye(1)#U, S, V
+    return U, S, V

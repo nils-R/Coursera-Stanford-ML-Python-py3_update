@@ -19,8 +19,12 @@ def findClosestCentroids(X, centroids):
     
     for i in range(m):
         for k in range(K):
-            idk[k] = np.linalg.norm(X[i,:]-centroids[k,:])
-        idx[i] = idk.argmin().astype(int)
+            idk[k] = np.linalg.norm(X[i]-centroids[k])
+        idx[i] = idk.argmin()
+
+        #for k in range(K):
+        #        idk[k] = np.linalg.norm(X[i,:]-centroids[k,:])
+        #np.linalg.norm(X[i,:]-centroids[k,:])
         
         
     # ====================== YOUR CODE HERE ======================

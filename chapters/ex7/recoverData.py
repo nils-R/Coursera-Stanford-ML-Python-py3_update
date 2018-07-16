@@ -7,7 +7,10 @@ def recoverData(Z, U, K):
     original data that has been reduced to K dimensions. It returns the
     approximate reconstruction in X_rec.
     """
-
+    if K == 1:
+        recovered_j = U[:,K][:,None].dot(Z.T)
+    else:
+        recovered_j = U[:,K].dot(Z.T)
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the approximation of the data by projecting back
     #               onto the original space using the top K eigenvectors in U.
@@ -21,4 +24,4 @@ def recoverData(Z, U, K):
     #
     # =============================================================
 
-    return np.zeros(1)#X_rec
+    return recovered_j#X_rec
